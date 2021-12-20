@@ -50,7 +50,7 @@ robj *createObject(int type, void *ptr) {
     if (server.maxmemory_policy & MAXMEMORY_FLAG_LFU) {
         o->lru = (LFUGetTimeInMinutes()<<8) | LFU_INIT_VAL;
     } else {
-        o->lru = LRU_CLOCK();
+        o->lru = LRU_CLOCK();    // 获取 LRU 时钟值
     }
     return o;
 }

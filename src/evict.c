@@ -566,10 +566,10 @@ int freeMemoryIfNeeded(void) {
              *
              * AOF and Output buffer memory will be freed eventually so
              * we only care about memory used by the key space. */
-            delta = (long long) zmalloc_used_memory();
+            delta = (long long) zmalloc_used_memory();    // 计算当前已使用的内存量
             latencyStartMonitor(eviction_latency);
-            if (server.lazyfree_lazy_eviction)
-                dbAsyncDelete(db,keyobj);
+            if (server.lazyfree_lazy_eviction)    // 启用惰性删除    
+                dbAsyncDelete(db,keyobj);    /// 异步删除
             else
                 dbSyncDelete(db,keyobj);
             latencyEndMonitor(eviction_latency);

@@ -86,7 +86,7 @@ int dbAsyncDelete(redisDb *db, robj *key) {
     dictEntry *de = dictUnlink(db->dict,key->ptr);
     if (de) {
         robj *val = dictGetVal(de);
-        size_t free_effort = lazyfreeGetFreeEffort(val);
+        size_t free_effort = lazyfreeGetFreeEffort(val);    // 评估释放值 val 内存的代价
 
         /* If releasing the object is too much work, do it in the background
          * by adding the object to the lazy free list.

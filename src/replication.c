@@ -649,9 +649,9 @@ int startBgsaveForReplication(int mincapa) {
     /* Only do rdbSave* when rsiptr is not NULL,
      * otherwise slave will miss repl-stream-db. */
     if (rsiptr) {
-        if (socket_target)
+        if (socket_target)    // 不落盘方式传输 RDB 文件
             retval = rdbSaveToSlavesSockets(rsiptr);
-        else
+        else    // 落盘方式传输 RDB 文件
             retval = rdbSaveBackground(server.rdb_filename,rsiptr);
     } else {
         serverLog(LL_WARNING,"BGSAVE for replication: replication information not available, can't generate the RDB file right now. Try later.");

@@ -1458,7 +1458,7 @@ struct redisServer {
     int lua_always_replicate_commands; /* Default replication type. */
     int lua_oom;          /* OOM detected when script start? */
     /* Lazy free */
-    int lazyfree_lazy_eviction;
+    int lazyfree_lazy_eviction;    // 惰性删除策略
     int lazyfree_lazy_expire;
     int lazyfree_lazy_server_del;
     int lazyfree_lazy_user_del;
